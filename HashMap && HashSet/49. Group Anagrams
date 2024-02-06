@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+       List<List<String>> ret=new ArrayList<>();
+       //n---strings
+       // k---string.length
+
+        HashMap <String,List<String>> hash=new HashMap<>();
+
+        for(int i=0;i<strs.length;i++){
+            String temp=strs[i];
+            char[] c=temp.toCharArray();
+            Arrays.sort(c);
+            String t=new String(c);
+            if(!hash.containsKey(t)){
+                hash.put(t,new ArrayList<>());
+            }
+            hash.get(t).add(strs[i]);
+        }
+        for(String s:hash.keySet()){
+            ret.add(hash.get(s));
+        }
+        return ret;
+    }
+    //   (n)*klogk----> tc
+    //    O(n*k)-----> sc
+}
